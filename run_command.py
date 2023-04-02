@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-def run_command_in_all_subdirectories(command):
+def run_command_in_subdirectories_one_level(command):
     print(f'command:{command}')
     print(f'cwd:{os.getcwd()}')
     for path, dirs, files in os.walk('.'):
@@ -19,5 +19,5 @@ def run_command_in_all_subdirectories(command):
             os.chdir('..')
 
 command = input("Enter the shell command to run: ")
-run_command_in_all_subdirectories(command)
+run_command_in_subdirectories_one_level(command)
 
