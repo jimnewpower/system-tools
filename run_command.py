@@ -3,13 +3,16 @@ import os
 import subprocess
 
 def run_command_in_subdirectories_one_level(command):
-    print(f'command : {command}')
-    if command.startswith('rm'):
-        print(f'Invalid command (rm): {command}')
-        quit()
+    disallowed = ['rm', 'mv', 'kill']
+    for dis in disallowed:
+        if command.startswith(dis):
+            print(f'Invalid command: {command}')
+            quit()
+
+    print(f'Command : {command}')
 
     working_dir = os.getcwd()
-    print(f'cwd : {working_dir}')
+    print(f'Working Directory : {working_dir}')
     dirs = list()
     for file in os.listdir(working_dir):
         if (os.path.isdir(os.path.join(working_dir, file))):
