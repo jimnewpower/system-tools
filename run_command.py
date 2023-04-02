@@ -3,18 +3,22 @@ import os
 import subprocess
 
 def run_command_in_subdirectories_one_level(command):
-    print(f'cwd : {os.getcwd()}')
     print(f'command : {command}')
-    root = os.getcwd()
+    if command.startswith('rm'):
+        print(f'Invalid command (rm): {command}')
+        quit()
+
+    working_dir = os.getcwd()
+    print(f'cwd : {working_dir}')
     dirs = list()
-    for file in os.listdir(root):
-        if (os.path.isdir(os.path.join(root, file))):
+    for file in os.listdir(working_dir):
+        if (os.path.isdir(os.path.join(working_dir, file))):
             dirs.append(file)
 
     dirs.sort()
     for subdir in dirs:
-        print(f'\n========================================')
-        print(f'{subdir} : {command}')
+        print(f'\n===================================================')
+        print(f'{subdir} : {command}\n')
         os.chdir(subdir)
         try:
             subprocess.run(command, shell=True, check=True)
