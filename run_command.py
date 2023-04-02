@@ -3,7 +3,7 @@ import os
 import subprocess
 
 def run_command_in_subdirectories_one_level(command):
-    disallowed = ['rm', 'mv', 'kill']
+    disallowed = ['rm', 'mv', 'kill', 'shutdown', 'reboot']
     for dis in disallowed:
         if command.startswith(dis):
             print(f'Invalid command: {command}')
